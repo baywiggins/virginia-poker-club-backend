@@ -6,12 +6,12 @@ bp = Blueprint('admin', __name__, url_prefix='/admin')
 
 @bp.route('/token', methods=["POST"])
 def create_token():
-    email = request.json.get("email", None)
+    username = request.json.get("username", None)
     password = request.json.get("password", None)
-    if email != "test" or password != "test":
+    if username != "test" or password != "test":
         return {"msg": "Wrong email or password"}, 401
 
-    access_token = create_access_token(identity=email)
+    access_token = create_access_token(identity=username)
     response = {"access_token":access_token}
     return response
 
